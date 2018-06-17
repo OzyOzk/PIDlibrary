@@ -21,7 +21,6 @@ class basePID
     
     virtual unsigned long getTimeDelta();
   
-  
   protected:
   
     float Kp;
@@ -51,7 +50,6 @@ class basePID
     float outputlimitlow;
     
     basePID();
-  
 };
 
 class PID : public basePID
@@ -62,8 +60,6 @@ class PID : public basePID
         float*, float*, float*);
     
     void output();
-
-  
 };
 
 class PI_D : public basePID
@@ -74,8 +70,5 @@ class PI_D : public basePID
         float*, float*, float*);
     
     void output();
-
-  
 };
-
 #endif
