@@ -77,12 +77,12 @@ class PI_D : public basePID
 
 class I_PD : public basePID
 {
-public:
+  public:
 
-	I_PD(float, float, float, unsigned long int,
-		float*, float*, float*);
+    I_PD(float, float, float, unsigned long int,
+	    float*, float*, float*);
 
-	void output();
+    void output();
 };
 
 #endif
