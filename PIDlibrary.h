@@ -71,4 +71,24 @@ class PI_D : public basePID
     
     void output();
 };
+
+class I_PD : public basePID
+{
+public:
+
+	I_PD(float, float, float, unsigned long int,
+		float*, float*, float*);
+
+	void output();
+};
+
+class PI_D : public basePID
+{
+public:
+
+	I_PD(float, float, float, unsigned long int,
+		float*, float*, float*);
+
+	void output();
+};
 #endif

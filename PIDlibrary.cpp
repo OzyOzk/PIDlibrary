@@ -122,4 +122,41 @@ void PI_D::output()
   }
 }
 
+I_PD::I_PD(float kp, float ki, float kd, unsigned long int time_delta,
+	float* reference, float* feedback, float* controlout)
+{
+	this->time_delta = time_delta;
+	this->reference = reference;
+	this->feedback = feedback;
+	this->controlout = controlout;
 
+	setCoefficients(kp, ki, kd);
+	setTimeDelta(time_delta);
+	integralSat(1000, 2000);
+	outputSat(1000, 1000);
+	feedback_prev = 0;
+	time_prev = millis() - time_delta;
+}
+
+void I_PD::output()
+{
+	if (millis() - time_prev >= time_delta)
+	{
+		error = *reference - *feedback;
+
+		Pmode = Kp * (*feedback - feedback_prev);
+		Imode += Ki * error;
+		Dmode = Kd * (*feedback - feedback_prev);
+		control = Pmode + Imode + Dmode;
+
+		if (Imode > ilimithigh) Imode = ilimithigh;
+		if (Imode < ilimitlow) Imode = ilimitlow;
+
+		if (control > outputlimithigh) *controlout = outputlimithigh;
+		else if (control < outputlimitlow) *controlout = outputlimitlow;
+		else *controlout = control;
+
+		feedback_prev = *feedback;
+		time_prev = millis();
+	}
+}
