@@ -44,6 +44,7 @@ float basePID:: getKi() {return Ki;}
 float basePID:: getKd() {return Kd;}
 unsigned long  basePID::getTimeDelta() {return time_delta;}
 
+//proportional, integral and derivative all on error.
 PID::PID(float kp, float ki, float kd, unsigned long int time_delta,
     float* reference, float* feedback, float* controlout)
     {
@@ -83,6 +84,7 @@ void PID::output()
   }
 }
 
+//proportional integral on error, derivative on feedback
 PI_D::PI_D(float kp, float ki, float kd, unsigned long int time_delta,
     float* reference, float* feedback, float* controlout)
     {
@@ -122,6 +124,7 @@ void PI_D::output()
   }
 }
 
+//roportional and erivative on feedback, Integral on error
 I_PD::I_PD(float kp, float ki, float kd, unsigned long int time_delta,
 	float* reference, float* feedback, float* controlout)
 {
