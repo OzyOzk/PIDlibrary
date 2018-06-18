@@ -1,5 +1,5 @@
 # PIDlibrary
-PID libary for Arduino boards (work in progress)
+PID libary for Arduino boards (work in progress). Started off as a modification of the arduino PID library. Currently rewriting entire library, adding a number of extra functions as well as a few more types of PID controllers.
 
 ## Tasks ##
 
