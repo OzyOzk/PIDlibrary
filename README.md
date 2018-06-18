@@ -11,7 +11,7 @@ PID libary for Arduino boards (work in progress). Started off as a modification 
 
 The code takes 112 micro seconds to run with every available function in void loop(). That is ~8928Hz. This was tested on an Arduino Uno R3 using the micros() function. 
 
-```c++
+```cpp
   timepre = micros();
   myPID.setCoefficients(1,1,1);
   myPID.setTimeDelta(2000);
