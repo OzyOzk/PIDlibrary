@@ -1,3 +1,6 @@
+#ifndef PIDlibrary_h
+#define PIDlibrary_h
+
 class basePID
 {
   public:
@@ -82,13 +85,4 @@ public:
 	void output();
 };
 
-class PI_D : public basePID
-{
-public:
-
-	I_PD(float, float, float, unsigned long int,
-		float*, float*, float*);
-
-	void output();
-};
 #endif
