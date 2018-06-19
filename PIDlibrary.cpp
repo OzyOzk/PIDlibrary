@@ -65,6 +65,7 @@ void PID::output()
 {
   if(millis()-time_prev >= time_delta)
   {
+    time_prev = millis();
     error = *reference-*feedback;
 
     Pmode = Kp*error;
@@ -80,7 +81,7 @@ void PID::output()
     else *controlout = control;
     
     error_prev = error;
-    time_prev = millis();
+    
   }
 }
 
@@ -105,6 +106,7 @@ void PI_D::output()
 {
   if(millis()-time_prev >= time_delta)
   {
+    time_prev = millis();
     error = *reference-*feedback;
 
     Pmode = Kp*error;
@@ -120,7 +122,6 @@ void PI_D::output()
     else *controlout = control;
     
     feedback_prev = *feedback;
-    time_prev = millis();
   }
 }
 
@@ -145,6 +146,7 @@ void I_PD::output()
 {
   if (millis() - time_prev >= time_delta)
   {
+    time_prev = millis();
     error = *reference - *feedback;
 
     Pmode = Kp * (*feedback - feedback_prev);
@@ -160,6 +162,5 @@ void I_PD::output()
     else *controlout = control;
 
     feedback_prev = *feedback;
-    time_prev = millis();
   }
 }
