@@ -1,13 +1,13 @@
 # PIDlibrary
 PID libary for Arduino boards (work in progress). Started off as a modification of the arduino PID library. Currently rewriting entire library, adding a number of extra functions as well as a few more types of PID controllers. 
 
-The only part of the code that depends on the Arduino libraries is the ```millis()``` function. If you replace this with it's equivalent on the hardware you're using, then the code will work on you're hardware. ```Millis()``` is a function that returns the time elapsted in milliseconds since the microcontroller was turned on. It returns the time elapsed as an ```unsigned long```.
+The only part of the code that depends on the Arduino libraries is the ```millis()``` function. If you replace this with it's equivalent on the hardware you're using, then the code will work on your hardware. ```Millis()``` is a function that returns the time elapsted in milliseconds since the microcontroller was turned on. It returns the time elapsed as an ```unsigned long```.
 
 ## Tasks ##
 
 * add auto, manual function
 * check all users defined variables for validity (sanity checks)
-* Upload test results on Quadcopter, differential drive
+* Upload test results on Quadcopter, differential drive robot
 
 ## Timing ##
 
