@@ -125,7 +125,7 @@ void PI_D::output()
   }
 }
 
-//roportional and erivative on feedback, Integral on error
+//proportional and derivative on feedback, Integral on error
 I_PD::I_PD(float kp, float ki, float kd, unsigned long int time_delta,
 	float* reference, float* feedback, float* controlout)
 {
