@@ -36,12 +36,12 @@ void basePID::outputSat(float outputlimitlow, float outputlimithigh)
 
 void basePID::output(){};
 
-float basePID:: getPmode() {return Pmode;}
-float basePID:: getImode() {return Imode;}
-float basePID:: getDmode() {return Dmode;}
-float basePID:: getKp() {return Kp;}
-float basePID:: getKi() {return Ki;}
-float basePID:: getKd() {return Kd;}
+float basePID:: getPmode() const {return Pmode;}
+float basePID:: getImode() const {return Imode;}
+float basePID:: getDmode() const {return Dmode;}
+float basePID:: getKp() const {return Kp;}
+float basePID:: getKi() const {return Ki;}
+float basePID:: getKd() const {return Kd;}
 unsigned long  basePID::getTimeDelta() {return time_delta;}
 
 //proportional, integral and derivative all on error.

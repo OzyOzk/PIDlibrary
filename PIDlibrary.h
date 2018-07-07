@@ -15,14 +15,14 @@ class basePID
     
     virtual void output()=0;
 
-    virtual float getPmode();
-    virtual float getImode();
-    virtual float getDmode();
-    virtual float getKp();
-    virtual float getKi();
-    virtual float getKd();
+    virtual float getPmode () const;
+    virtual float getImode () const;
+    virtual float getDmode () const;
+    virtual float getKp () const;
+    virtual float getKi () const;
+    virtual float getKd () const;
     
-    virtual unsigned long getTimeDelta();
+    virtual unsigned long getTimeDelta() const;
   
   protected:
   
