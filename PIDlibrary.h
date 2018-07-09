@@ -34,7 +34,7 @@ class basePID
     float Dmode;
     
     float error;
-    float errorDt;
+    float error_dt;
     float error_prev;
     float feedback_prev;
     float integral;
@@ -47,10 +47,10 @@ class basePID
     unsigned long int time_prev;
     unsigned long int time_delta;
 
-    float ilimithigh;
-    float ilimitlow;
-    float outputlimithigh;
-    float outputlimitlow;
+    float i_limit_high;
+    float i_limit_low;
+    float output_limit_high;
+    float output_limit_low;
     
     basePID();
 };

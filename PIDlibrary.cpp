@@ -22,16 +22,16 @@ void basePID::setTimeDelta(unsigned long time_delta)
   this->time_delta = time_delta;
 }
 
-void basePID::integralSat(float ilimitlow, float ilitmithigh)
+void basePID::integralSat(float i_limit_low, float i_limit_high)
 {
-  this->ilimithigh = ilimithigh;
-  this->ilimitlow = ilimitlow;
+  this->i_limit_low = i_limit_low;
+  this->i_limit_high = i_limit_high;
 }
 
-void basePID::outputSat(float outputlimitlow, float outputlimithigh)
+void basePID::outputSat(float output_limit_low, float output_limit_high)
 {
-  this->outputlimithigh = outputlimithigh;
-  this->outputlimitlow = outputlimitlow;
+  this->output_limit_high = output_limit_high;
+  this->output_limit_low = output_limit_low;
 }
 
 void basePID::output(){};
@@ -71,16 +71,14 @@ void PID::output()
     Pmode = Kp*error;
     Imode += Ki*error;
 
-    if(Imode > ilimithigh) Imode = ilimithigh;
-    if(Imode < ilimitlow) Imode = ilimitlow;
-    
+    if(Imode > i_limit_high) Imode = i_limit_high;
+    if(Imode < i_limit_low) Imode = i_limit_low;
+
     Dmode = Kd*(error-error_prev);
     control = Pmode+Imode+Dmode;
-    
 
-    
-    if(control > outputlimithigh) *controlout = outputlimithigh;
-    else if( control < outputlimitlow) *controlout = outputlimitlow;
+    if(control > output_limit_high) *controlout = output_limit_high;
+    else if( control < output_limit_low) *controlout = output_limit_low;
     else *controlout = control;
     
     error_prev = error;
@@ -115,14 +113,14 @@ void PI_D::output()
     Pmode = Kp*error;
 
     Imode += Ki*error;
-    if(Imode > ilimithigh) Imode = ilimithigh;
-    if(Imode < ilimitlow) Imode = ilimitlow;
+    if(Imode > i_limit_high) Imode = i_limit_high;
+    if(Imode < i_limit_low) Imode = i_limit_low;
 
     Dmode = Kd*(*feedback-feedback_prev);
     control = Pmode+Imode+Dmode;
 
-    if(control > outputlimithigh) *controlout = outputlimithigh;
-    else if( control < outputlimitlow) *controlout = outputlimitlow;
+    if(control > output_limit_high) *controlout = output_limit_high;
+    else if( control < output_limit_low) *controlout = output_limit_low;
     else *controlout = control;
     
     feedback_prev = *feedback;
@@ -155,14 +153,14 @@ void I_PD::output()
     Pmode = Kp * (*feedback - feedback_prev);
 
     Imode += Ki * error;
-    if (Imode > ilimithigh) Imode = ilimithigh;
-    if (Imode < ilimitlow) Imode = ilimitlow;
+    if(Imode > i_limit_high) Imode = i_limit_high;
+    if(Imode < i_limit_low) Imode = i_limit_low;
 
     Dmode = Kd * (*feedback - feedback_prev);
     control = Pmode + Imode + Dmode;
 
-    if (control > outputlimithigh) *controlout = outputlimithigh;
-    else if (control < outputlimitlow) *controlout = outputlimitlow;
+    if (control > output_limit_high) *controlout = output_limit_high;
+    else if (control < output_limit_low) *controlout = output_limit_low;
     else *controlout = control;
 
     feedback_prev = *feedback;
