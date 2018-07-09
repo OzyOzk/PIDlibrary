@@ -42,7 +42,7 @@ float basePID:: getDmode() const {return Dmode;}
 float basePID:: getKp() const {return Kp;}
 float basePID:: getKi() const {return Ki;}
 float basePID:: getKd() const {return Kd;}
-unsigned long  basePID::getTimeDelta() {return time_delta;}
+unsigned long  basePID::getTimeDelta() const {return time_delta;}
 
 //proportional, integral and derivative all on error.
 PID::PID(float kp, float ki, float kd, unsigned long int time_delta,
@@ -70,18 +70,21 @@ void PID::output()
 
     Pmode = Kp*error;
     Imode += Ki*error;
+
+    if(Imode > ilimithigh) Imode = ilimithigh;
+    if(Imode < ilimitlow) Imode = ilimitlow;
+    
     Dmode = Kd*(error-error_prev);
     control = Pmode+Imode+Dmode;
     
-    if(Imode > ilimithigh) Imode = ilimithigh;
-    if(Imode < ilimitlow) Imode = ilimitlow;
+
     
     if(control > outputlimithigh) *controlout = outputlimithigh;
     else if( control < outputlimitlow) *controlout = outputlimitlow;
     else *controlout = control;
     
     error_prev = error;
-    
+
   }
 }
 
@@ -110,13 +113,14 @@ void PI_D::output()
     error = *reference-*feedback;
 
     Pmode = Kp*error;
+
     Imode += Ki*error;
-    Dmode = Kd*(*feedback-feedback_prev);
-    control = Pmode+Imode+Dmode;
-    
     if(Imode > ilimithigh) Imode = ilimithigh;
     if(Imode < ilimitlow) Imode = ilimitlow;
-    
+
+    Dmode = Kd*(*feedback-feedback_prev);
+    control = Pmode+Imode+Dmode;
+
     if(control > outputlimithigh) *controlout = outputlimithigh;
     else if( control < outputlimitlow) *controlout = outputlimitlow;
     else *controlout = control;
@@ -148,14 +152,14 @@ void I_PD::output()
   {
     time_prev = millis();
     error = *reference - *feedback;
-
     Pmode = Kp * (*feedback - feedback_prev);
-    Imode += Ki * error;
-    Dmode = Kd * (*feedback - feedback_prev);
-    control = Pmode + Imode + Dmode;
 
+    Imode += Ki * error;
     if (Imode > ilimithigh) Imode = ilimithigh;
     if (Imode < ilimitlow) Imode = ilimitlow;
+
+    Dmode = Kd * (*feedback - feedback_prev);
+    control = Pmode + Imode + Dmode;
 
     if (control > outputlimithigh) *controlout = outputlimithigh;
     else if (control < outputlimitlow) *controlout = outputlimitlow;
