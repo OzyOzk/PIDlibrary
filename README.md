@@ -22,3 +22,14 @@ The code takes 112 micro seconds to run with every available function in void lo
   Serial.println(micros()-timepre);
 ```
 
+## Timing (Static Polymorphism)
+
+The code now takes 104 micro seconds to run with every available function in void loop(). This is a mere 8 microsecond improvement over the original polymorphic version of the codebase which is quite dissapointing. I'll be investigating this further to see if there are any implementation issues. The same test as above was run to test this code's speed, shown below.
+
+```cpp
+  timepre = micros();
+  myPID.setCoefficients(1,1,1);
+  myPID.setTimeDelta(2000);
+  myPID.integralSat(-2,2);
+  myPID.outputSat(-200,200);
+  Serial.println(micros()-timepre);
