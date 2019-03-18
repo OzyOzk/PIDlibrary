@@ -128,7 +128,7 @@ void basePID<T>::outputSat(float output_limit_low, float output_limit_high)
 template<class T>
 void basePID<T>::output()
 {
-    static_cast<T>(this)->output();
+    static_cast<T*>(this)->output();
 };
 
 template<class T>
