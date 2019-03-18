@@ -24,7 +24,7 @@ The code takes 112 micro seconds to run with every available function in void lo
 
 ## Timing (Static Polymorphism)
 
-The code now takes 104 micro seconds to run with every available function in void loop(). This is a mere 8 microsecond improvement over the original polymorphic version of the codebase which is quite dissapointing. I'll be investigating this further to see if there are any implementation issues. The same test as above was run to test this code's speed, shown below.
+The code now takes 104 micro seconds to run with every available function in void loop(). This is a mere 8 microsecond improvement over the original polymorphic version of the codebase which is allot less than what I thought it would be. I'll be investigating this further to see if there are any implementation issues. The same test as above was run to test this code's speed, shown below.
 
 ```cpp
   timepre = micros();
